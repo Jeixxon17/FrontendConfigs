@@ -28,11 +28,11 @@ function getVal(key: string) {
     <!-- Header -->
     <div class="flex items-center justify-between px-4 py-3 border-b border-surface-800/60">
       <div class="flex items-center gap-2">
-        <span class="text-[10px] text-surface-600 font-mono uppercase tracking-widest">Controls</span>
-        <span class="text-[10px] bg-surface-800 text-surface-500 px-1.5 py-0.5 rounded-full font-mono">{{ controls.length }}</span>
+        <span class="text-[10px] text-surface-600   uppercase tracking-widest">Controls</span>
+        <span class="text-[10px] bg-surface-800 text-surface-500 px-1.5 py-0.5 rounded-full  ">{{ controls.length }}</span>
       </div>
       <button @click="reset"
-        class="text-[10px] text-surface-600 hover:text-surface-300 transition-colors flex items-center gap-1 font-mono">
+        class="text-[10px] text-surface-600 hover:text-surface-300 transition-colors flex items-center gap-1  ">
         ↺ Reset
       </button>
     </div>
@@ -43,7 +43,7 @@ function getVal(key: string) {
         <!-- Label + key -->
         <div class="flex items-center justify-between">
           <label class="text-xs font-medium text-surface-300">{{ ctrl.label }}</label>
-          <span class="text-[10px] font-mono text-surface-600 bg-surface-800/60 px-1.5 py-0.5 rounded">{{ ctrl.key }}</span>
+          <span class="text-[10px]   text-surface-600 bg-surface-800/60 px-1.5 py-0.5 rounded">{{ ctrl.key }}</span>
         </div>
 
         <!-- SELECT -->
@@ -85,9 +85,9 @@ function getVal(key: string) {
               @input="update(ctrl.key, Number(($event.target as HTMLInputElement).value))"
               class="flex-1 accent-accent-500 h-1.5 rounded-full bg-surface-700 appearance-none cursor-pointer"
             />
-            <span class="text-xs font-mono text-accent-400 w-6 text-right">{{ getVal(ctrl.key) }}</span>
+            <span class="text-xs   text-accent-400 w-6 text-right">{{ getVal(ctrl.key) }}</span>
           </div>
-          <div class="flex justify-between text-[10px] text-surface-700 font-mono">
+          <div class="flex justify-between text-[10px] text-surface-700  ">
             <span>{{ ctrl.min }}</span><span>{{ ctrl.max }}</span>
           </div>
         </div>
@@ -100,7 +100,7 @@ function getVal(key: string) {
           :max="ctrl.max"
           :step="ctrl.step ?? 1"
           @input="update(ctrl.key, Number(($event.target as HTMLInputElement).value))"
-          class="w-full bg-surface-800/80 border border-surface-700/60 rounded-lg px-3 py-2 text-xs text-surface-200 focus:outline-none focus:border-accent-500/60 transition-all font-mono"
+          class="w-full bg-surface-800/80 border border-surface-700/60 rounded-lg px-3 py-2 text-xs text-surface-200 focus:outline-none focus:border-accent-500/60 transition-all  "
         />
 
         <!-- TEXT -->
@@ -119,7 +119,7 @@ function getVal(key: string) {
             @input="update(ctrl.key, ($event.target as HTMLInputElement).value)"
             class="w-9 h-9 rounded-lg border border-surface-700/60 bg-surface-800 cursor-pointer p-0.5"
           />
-          <span class="text-xs font-mono text-surface-400">{{ getVal(ctrl.key) }}</span>
+          <span class="text-xs   text-surface-400">{{ getVal(ctrl.key) }}</span>
         </div>
       </div>
     </div>

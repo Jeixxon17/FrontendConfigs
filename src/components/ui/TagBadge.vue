@@ -23,7 +23,7 @@ const variantClasses: Record<string, string> = {
 
 <template>
   <span
-    class="tag-badge border font-mono"
+    class="tag-badge border  "
     :class="[variantClasses[variant], size === 'md' ? 'text-xs px-2.5 py-1' : 'text-[10px] px-2 py-0.5']"
   >
     <slot />

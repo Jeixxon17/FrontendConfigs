@@ -351,7 +351,7 @@ const previewComponents = [
               v-model="form.slug"
               type="text"
               placeholder="modal-login"
-              class="input-base font-mono text-xs"
+              class="input-base   text-xs"
             />
             <p class="text-[10px] text-surface-600">
               URL: /config/{{ form.slug || "slug" }}
@@ -388,7 +388,7 @@ const previewComponents = [
               v-model="form.preview"
               type="text"
               placeholder="https://frontend.com/imagen.png"
-              class="input-base font-mono text-xs"
+              class="input-base   text-xs"
             />
           </div>
 
@@ -398,7 +398,7 @@ const previewComponents = [
               <div
                 v-for="tag in form.tags"
                 :key="tag"
-                class="flex items-center gap-1 px-2 py-0.5 bg-surface-800 border border-surface-700/60 rounded-md text-xs font-mono text-surface-300"
+                class="flex items-center gap-1 px-2 py-0.5 bg-surface-800 border border-surface-700/60 rounded-md text-xs   text-surface-300"
               >
                 #{{ tag }}
                 <button
@@ -415,7 +415,7 @@ const previewComponents = [
                 @keydown.enter.prevent="addTag"
                 type="text"
                 placeholder="Añadir tags + Enter"
-                class="input-base font-mono text-xs"
+                class="input-base   text-xs"
               />
               <button @click="addTag" class="btn-primary shrink-0">Añadir</button>
             </div>
@@ -475,12 +475,12 @@ const previewComponents = [
                   "
                   rows="6"
                   placeholder='{\n  "myKey": "value"\n}'
-                  class="input-base font-mono text-xs resize-none"
+                  class="input-base   text-xs resize-none"
                   spellcheck="false"
                 />
                 <p
                   v-if="configJsonErrors[i]"
-                  class="text-xs text-rose-400 mt-1 font-mono"
+                  class="text-xs text-rose-400 mt-1  "
                 >
                   {{ configJsonErrors[i] }}
                 </p>
@@ -551,7 +551,7 @@ const previewComponents = [
                 "
                 rows="4"
                 placeholder='{ "requiredKey": true }'
-                class="input-base font-mono text-xs resize-none"
+                class="input-base   text-xs resize-none"
                 spellcheck="false"
               />
             </div>
@@ -603,7 +603,7 @@ const previewComponents = [
                   v-model="ctrl.key"
                   type="text"
                   placeholder="my_config_key"
-                  class="input-base font-mono text-xs"
+                  class="input-base   text-xs"
                 />
               </div>
               <div class="space-y-1">
@@ -631,7 +631,7 @@ const previewComponents = [
                   v-model="ctrl.defaultValue"
                   type="text"
                   placeholder="true / 1 / 'gold'"
-                  class="input-base font-mono text-xs"
+                  class="input-base   text-xs"
                 />
               </div>
             </div>
@@ -662,7 +662,7 @@ const previewComponents = [
                 "
                 rows="3"
                 placeholder="Version 1=1&#10;Version 2=2"
-                class="input-base font-mono text-xs resize-none"
+                class="input-base   text-xs resize-none"
               />
             </div>
             <!-- Range min/max -->
@@ -675,7 +675,7 @@ const previewComponents = [
                 <input
                   v-model.number="ctrl.min"
                   type="number"
-                  class="input-base text-xs font-mono"
+                  class="input-base text-xs  "
                 />
               </div>
               <div class="space-y-1">
@@ -683,7 +683,7 @@ const previewComponents = [
                 <input
                   v-model.number="ctrl.max"
                   type="number"
-                  class="input-base text-xs font-mono"
+                  class="input-base text-xs  "
                 />
               </div>
               <div class="space-y-1">
@@ -691,7 +691,7 @@ const previewComponents = [
                 <input
                   v-model.number="ctrl.step"
                   type="number"
-                  class="input-base text-xs font-mono"
+                  class="input-base text-xs  "
                 />
               </div>
             </div>
@@ -776,7 +776,7 @@ const previewComponents = [
                   "
                   rows="5"
                   placeholder='{ "myKey": 1, "otherKey": true }'
-                  class="input-base font-mono text-xs resize-none"
+                  class="input-base   text-xs resize-none"
                   spellcheck="false"
                 />
               </div>

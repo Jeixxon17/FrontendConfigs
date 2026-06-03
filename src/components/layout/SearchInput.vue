@@ -75,7 +75,7 @@ const matchTypeLabel: Record<string, string> = {
               placeholder="Search configurations, variables, tags…"
               class="flex-1 bg-transparent text-surface-100 placeholder-surface-600 text-base outline-none"
             />
-            <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-md bg-surface-800 border border-surface-700 text-xs text-surface-500 font-mono">ESC</kbd>
+            <kbd class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-md bg-surface-800 border border-surface-700 text-xs text-surface-500  ">ESC</kbd>
           </div>
 
           <!-- Results -->
@@ -83,7 +83,7 @@ const matchTypeLabel: Record<string, string> = {
             <!-- No query: show recents -->
             <template v-if="!store.searchQuery && store.recentDocs.length">
               <div class="px-4 pt-2 pb-1">
-                <span class="text-[10px] text-surface-600 font-mono uppercase tracking-widest">Recently Viewed</span>
+                <span class="text-[10px] text-surface-600   uppercase tracking-widest">Recently Viewed</span>
               </div>
               <button
                 v-for="doc in store.recentDocs.slice(0, 5)"
@@ -99,7 +99,7 @@ const matchTypeLabel: Record<string, string> = {
             <!-- Search results -->
             <template v-else-if="store.searchQuery && store.searchResults.length">
               <div class="px-4 pt-2 pb-1">
-                <span class="text-[10px] text-surface-600 font-mono uppercase tracking-widest">
+                <span class="text-[10px] text-surface-600   uppercase tracking-widest">
                   {{ store.searchResults.length }} result{{ store.searchResults.length !== 1 ? 's' : '' }}
                 </span>
               </div>
@@ -117,14 +117,14 @@ const matchTypeLabel: Record<string, string> = {
                   </div>
                   <p class="text-xs text-surface-500 truncate">{{ result.description }}</p>
                 </div>
-                <span class="text-[10px] text-surface-600 font-mono shrink-0">{{ matchTypeLabel[result.matchType] }}</span>
+                <span class="text-[10px] text-surface-600   shrink-0">{{ matchTypeLabel[result.matchType] }}</span>
               </button>
             </template>
 
             <!-- Empty state -->
             <div v-else-if="store.searchQuery" class="flex flex-col items-center py-12 gap-2">
               <span class="text-3xl opacity-30">◎</span>
-              <p class="text-sm text-surface-500">No results for <span class="text-surface-300 font-mono">"{{ store.searchQuery }}"</span></p>
+              <p class="text-sm text-surface-500">No results for <span class="text-surface-300  ">"{{ store.searchQuery }}"</span></p>
             </div>
 
             <!-- Default empty -->
@@ -136,10 +136,10 @@ const matchTypeLabel: Record<string, string> = {
           <!-- Footer -->
           <div class="flex items-center justify-between px-5 py-3 border-t border-surface-800 bg-surface-900/50">
             <div class="flex items-center gap-4 text-[10px] text-surface-600">
-              <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 bg-surface-800 rounded border border-surface-700 font-mono">↑↓</kbd> Navigate</span>
-              <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 bg-surface-800 rounded border border-surface-700 font-mono">↵</kbd> Select</span>
+              <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 bg-surface-800 rounded border border-surface-700  ">↑↓</kbd> Navigate</span>
+              <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 bg-surface-800 rounded border border-surface-700  ">↵</kbd> Select</span>
             </div>
-            <span class="text-[10px] text-surface-600 font-mono">⌘K to toggle</span>
+            <span class="text-[10px] text-surface-600  ">⌘K to toggle</span>
           </div>
         </div>
       </div>

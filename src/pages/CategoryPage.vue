@@ -22,7 +22,7 @@ function navigate(slug: string, id: string) {
 <template>
   <div class="max-w-4xl mx-auto px-6 py-10 space-y-6">
     <div>
-      <p class="text-xs text-surface-600 uppercase tracking-widest font-mono mb-1">Category</p>
+      <p class="text-xs text-surface-600 uppercase tracking-widest   mb-1">Category</p>
       <h1 class="text-3xl font-bold text-white font-display capitalize">{{ category }}</h1>
     </div>
 

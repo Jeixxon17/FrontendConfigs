@@ -95,13 +95,13 @@ function toggleSidebar() {
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
             </svg>
             <span class="hidden sm:inline">Search</span>
-            <kbd class="hidden sm:inline px-1 bg-surface-700/60 rounded border border-surface-600/40 text-[9px] font-mono">⌘K</kbd>
+            <kbd class="hidden sm:inline px-1 bg-surface-700/60 rounded border border-surface-600/40 text-[9px]  ">⌘K</kbd>
           </button>
 
           <!-- Config count -->
           <div class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-surface-800/40 rounded-lg border border-surface-700/30">
             <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse-slow" />
-            <span class="text-xs text-surface-500 font-mono">{{ store.docs.length }} configs</span>
+            <span class="text-xs text-surface-500  ">{{ store.docs.length }} configs</span>
           </div>
         </div>
       </header>

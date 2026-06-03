@@ -86,7 +86,7 @@ function openSearch() {
 
       <!-- Admin link + Footer -->
       <div class="shrink-0 border-t border-surface-800/40">
-        <div class="flex flex-col items-center p-2 text-[12px] text-surface-700 font-mono">
+        <div class="flex flex-col items-center p-2 text-[12px] text-surface-700  ">
           <span>&copy; 2026 Jeison Martinez.</span>
           <span>Todos los derechos reservados.</span>
         </div>

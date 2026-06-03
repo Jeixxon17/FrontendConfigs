@@ -62,7 +62,7 @@ const footerCols = computed(() => Math.min(6, Math.max(2, Number(props.values.fo
     <div class="p-5 space-y-4">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-xs opacity-60 uppercase tracking-widest font-mono">Loyalty Program</p>
+          <p class="text-xs opacity-60 uppercase tracking-widest  ">Loyalty Program</p>
           <p class="text-lg font-bold text-white font-display mt-0.5">Classic Points</p>
         </div>
         <div class="w-10 h-10 rounded-full flex items-center justify-center text-xl"
@@ -104,7 +104,7 @@ const footerCols = computed(() => Math.min(6, Math.max(2, Number(props.values.fo
     <div class="p-5 space-y-4">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-xs text-slate-500 uppercase tracking-widest font-mono">Your Tier</p>
+          <p class="text-xs text-slate-500 uppercase tracking-widest  ">Your Tier</p>
           <p class="text-lg font-bold text-white font-display mt-0.5">Tier Badges</p>
         </div>
         <span class="text-2xl">🏆</span>
@@ -121,14 +121,14 @@ const footerCols = computed(() => Math.min(6, Math.max(2, Number(props.values.fo
           :class="tier.active ? 'bg-slate-400/20 border border-slate-400/40 ring-1 ring-slate-400/30' : 'bg-slate-800/60 border border-slate-700/30 opacity-40'"
         >
           <span class="text-xl">{{ tier.icon }}</span>
-          <span class="text-[10px] font-mono" :class="tier.active ? 'text-slate-300' : 'text-slate-600'">{{ tier.name }}</span>
+          <span class="text-[10px]  " :class="tier.active ? 'text-slate-300' : 'text-slate-600'">{{ tier.name }}</span>
           <div v-if="tier.active" class="w-1.5 h-1.5 rounded-full bg-slate-400" />
         </div>
       </div>
 
       <div v-if="loyaltyPoints !== null" class="flex items-center justify-between bg-slate-800/60 rounded-lg px-3 py-2">
         <span class="text-xs text-slate-500">Current points</span>
-        <span class="text-sm font-bold text-slate-300 font-mono">{{ loyaltyPoints.toLocaleString() }}</span>
+        <span class="text-sm font-bold text-slate-300  ">{{ loyaltyPoints.toLocaleString() }}</span>
       </div>
 
       <div class="space-y-1.5">
@@ -150,7 +150,7 @@ const footerCols = computed(() => Math.min(6, Math.max(2, Number(props.values.fo
     <div class="p-5 space-y-4">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-xs text-emerald-600 uppercase tracking-widest font-mono">Scratch & Win</p>
+          <p class="text-xs text-emerald-600 uppercase tracking-widest  ">Scratch & Win</p>
           <p class="text-lg font-bold text-white font-display mt-0.5">Your Cards</p>
         </div>
         <span class="text-2xl">🎫</span>
@@ -493,6 +493,6 @@ const footerCols = computed(() => Math.min(6, Math.max(2, Number(props.values.fo
   <!-- ══════════════════════════════════════════════════════════════════════ -->
   <div v-else class="rounded-xl bg-surface-900 border border-surface-800/40 border-dashed flex flex-col items-center justify-center py-16 gap-3">
     <span class="text-4xl opacity-20">◎</span>
-    <p class="text-sm text-surface-600 font-mono">No preview for "{{ component }}"</p>
+    <p class="text-sm text-surface-600  ">No preview for "{{ component }}"</p>
   </div>
 </template>

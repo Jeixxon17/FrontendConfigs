@@ -14,7 +14,7 @@ const emit = defineEmits<{ select: [v: ConfigVariant] }>()
   <div class="space-y-1">
     <!-- Header -->
     <div class="px-4 py-3 border-b border-surface-800/60">
-      <span class="text-[10px] text-surface-600 font-mono uppercase tracking-widest">
+      <span class="text-[10px] text-surface-600   uppercase tracking-widest">
         Variants
         <span class="ml-1.5 bg-surface-800 text-surface-500 px-1.5 py-0.5 rounded-full">{{ variants.length }}</span>
       </span>
@@ -53,7 +53,7 @@ const emit = defineEmits<{ select: [v: ConfigVariant] }>()
         <div class="mt-1.5 rounded-lg bg-surface-950/60 border border-surface-800/40 px-2.5 py-1.5 overflow-hidden">
           <div class="flex flex-wrap gap-x-3 gap-y-0.5">
             <span v-for="(val, key) in variant.values" :key="key"
-              class="text-[10px] font-mono whitespace-nowrap">
+              class="text-[10px]   whitespace-nowrap">
               <span class="text-violet-400">{{ key }}</span>
               <span class="text-surface-600">: </span>
               <span :class="typeof val === 'boolean' ? 'text-amber-400' : typeof val === 'number' ? 'text-blue-400' : 'text-emerald-400'">

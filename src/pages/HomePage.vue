@@ -75,10 +75,10 @@ function onSaved(id: string) {
         <table v-if="filteredDocs.length" class="w-full">
           <thead class="sticky top-0 bg-surface-950/95 backdrop-blur z-10">
             <tr class="border-b border-surface-800/60">
-              <th class="text-left text-[10px] text-surface-600 font-mono uppercase tracking-widest px-6 py-3">Config</th>
-              <th class="text-left text-[10px] text-surface-600 font-mono uppercase tracking-widest px-4 py-3 hidden sm:table-cell">Category</th>
-              <th class="text-left text-[10px] text-surface-600 font-mono uppercase tracking-widest px-4 py-3 hidden lg:table-cell">Variants</th>
-              <th class="text-right text-[10px] text-surface-600 font-mono uppercase tracking-widest px-6 py-3">Actions</th>
+              <th class="text-left text-[10px] text-surface-600   uppercase tracking-widest px-6 py-3">Config</th>
+              <th class="text-left text-[10px] text-surface-600   uppercase tracking-widest px-4 py-3 hidden sm:table-cell">Category</th>
+              <th class="text-left text-[10px] text-surface-600   uppercase tracking-widest px-4 py-3 hidden lg:table-cell">Variants</th>
+              <th class="text-right text-[10px] text-surface-600   uppercase tracking-widest px-6 py-3">Actions</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-surface-800/30">
@@ -87,14 +87,14 @@ function onSaved(id: string) {
               <td class="px-6 py-3.5">
                 <div>
                   <p class="text-sm font-medium text-surface-200 group-hover:text-white transition-colors">{{ doc.title }}</p>
-                  <p class="text-[10px] text-surface-600 font-mono mt-0.5">/config/{{ doc.slug }}</p>
+                  <p class="text-[10px] text-surface-600   mt-0.5">/config/{{ doc.slug }}</p>
                 </div>
               </td>
               <td class="px-4 py-3.5 hidden sm:table-cell">
                 <TagBadge variant="accent">{{ doc.category }}</TagBadge>
               </td>
               <td class="px-4 py-3.5 hidden lg:table-cell">
-                <span class="text-xs text-surface-600 font-mono">
+                <span class="text-xs text-surface-600  ">
                   {{ doc.variants?.length ?? 0 }} variants · {{ doc.controls?.length ?? 0 }} controls
                 </span>
               </td>

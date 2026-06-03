@@ -50,14 +50,14 @@ const highlighted = computed(() => {
         <span v-if="title" class="text-xs font-medium text-surface-400 font-display">{{ title }}</span>
       </div>
       <div class="flex items-center gap-2">
-        <span class="text-[10px] text-surface-600 font-mono uppercase tracking-widest">{{ lang }}</span>
+        <span class="text-[10px] text-surface-600   uppercase tracking-widest">{{ lang }}</span>
         <CopyButton :text="jsonString" :label="title || 'snippet'" />
       </div>
     </div>
 
     <!-- Code area -->
     <div class="relative bg-surface-950/80 overflow-x-auto">
-      <pre class="p-5 text-sm font-mono leading-relaxed text-surface-300 whitespace-pre"><code v-html="highlighted" /></pre>
+      <pre class="p-5 text-sm   leading-relaxed text-surface-300 whitespace-pre"><code v-html="highlighted" /></pre>
     </div>
 
     <!-- Description footer -->

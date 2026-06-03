@@ -33,7 +33,7 @@ function navigate(id: string) {
     </div>
 
     <div v-if="store.searchResults.length" class="space-y-2">
-      <p class="text-xs text-surface-600 font-mono">{{ store.searchResults.length }} result(s)</p>
+      <p class="text-xs text-surface-600  ">{{ store.searchResults.length }} result(s)</p>
       <div
         v-for="result in store.searchResults"
         :key="result.id"

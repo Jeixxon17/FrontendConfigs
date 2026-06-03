@@ -83,7 +83,7 @@ const crumbs = computed(() => [
                 })
               }}
             </span>
-            <span class="font-mono"
+            <span class=" "
               >{{ doc.configs.length }} blocks ·
               {{ doc.dependencies?.length ?? 0 }} deps</span
             >
@@ -110,7 +110,7 @@ const crumbs = computed(() => [
           {{ tab.label }}
           <span
             v-if="tab.count"
-            class="text-[10px] bg-surface-800 text-surface-500 px-1.5 py-0.5 rounded-full font-mono"
+            class="text-[10px] bg-surface-800 text-surface-500 px-1.5 py-0.5 rounded-full  "
           >
             {{ tab.count }}
           </span>
@@ -173,7 +173,7 @@ const crumbs = computed(() => [
           />
           <div class="glass-card p-4 space-y-2">
             <div class="flex items-center gap-3 flex-wrap">
-              <span class="font-mono text-sm font-semibold text-accent-400"
+              <span class="  text-sm font-semibold text-accent-400"
                 >v{{ entry.version }}</span
               >
               <span class="text-xs text-surface-600">{{ entry.date }}</span>

@@ -4,11 +4,6 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
-        display: ['"Syne"', 'sans-serif'],
-      },
       colors: {
         surface: {
           50: '#f8f9fb',

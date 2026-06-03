@@ -73,11 +73,11 @@ const hasPlayground = computed(() =>
         </div>
         <!-- Custom state badge -->
         <span v-if="!activeVariantId && doc.variants?.length"
-          class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400">
+          class="text-[10px]   px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400">
           ✦ Custom
         </span>
         <span v-else-if="activeVariant"
-          class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-accent-500/10 border border-accent-500/20 text-accent-400">
+          class="text-[10px]   px-2 py-0.5 rounded-full bg-accent-500/10 border border-accent-500/20 text-accent-400">
           {{ activeVariant.label }}
         </span>
       </div>
@@ -88,7 +88,7 @@ const hasPlayground = computed(() =>
         <div class="hidden sm:flex items-center gap-1 bg-surface-800/60 border border-surface-700/40 rounded-lg px-2 py-1">
           <button @click="previewScale = Math.max(50, previewScale - 10)"
             class="text-xs text-surface-500 hover:text-surface-300 w-5 h-5 flex items-center justify-center rounded transition-colors">−</button>
-          <span class="text-[10px] font-mono text-surface-400 w-8 text-center">{{ previewScale }}%</span>
+          <span class="text-[10px]   text-surface-400 w-8 text-center">{{ previewScale }}%</span>
           <button @click="previewScale = Math.min(150, previewScale + 10)"
             class="text-xs text-surface-500 hover:text-surface-300 w-5 h-5 flex items-center justify-center rounded transition-colors">+</button>
         </div>
@@ -96,7 +96,7 @@ const hasPlayground = computed(() =>
         <button @click="showCode = !showCode"
           class="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs transition-all"
           :class="showCode ? 'bg-accent-600/15 text-accent-400 border border-accent-500/20' : 'text-surface-500 hover:text-surface-300 border border-transparent hover:border-surface-700'">
-          <span class="font-mono">{}</span>
+          <span class=" ">{}</span>
           {{ showCode ? 'Esconder' : 'Mostrar' }} codigo
         </button>
 
@@ -134,7 +134,7 @@ const hasPlayground = computed(() =>
               : 'border-transparent text-surface-600 hover:text-surface-400'"
           >
             {{ tab }}
-            <span class="ml-1 text-[10px] font-mono opacity-60">
+            <span class="ml-1 text-[10px]   opacity-60">
               {{ tab === 'variants' ? doc.variants?.length ?? 0 : doc.controls?.length ?? 0 }}
             </span>
           </button>
@@ -170,8 +170,8 @@ const hasPlayground = computed(() =>
         <!-- Preview area label -->
         <div class="flex items-center justify-between px-4 py-2.5 border-b border-surface-800/40 bg-surface-900/30">
           <div class="flex items-center gap-2">
-            <span class="text-[10px] text-surface-600 font-mono uppercase tracking-widest">Preview</span>
-            <span v-if="activeVariant" class="text-[10px] text-surface-700 font-mono">· {{ activeVariant.label }}</span>
+            <span class="text-[10px] text-surface-600   uppercase tracking-widest">Preview</span>
+            <span v-if="activeVariant" class="text-[10px] text-surface-700  ">· {{ activeVariant.label }}</span>
           </div>
           <!-- Viewport toggle -->
           <div class="flex items-center gap-1">
@@ -179,7 +179,7 @@ const hasPlayground = computed(() =>
               v-for="scale in [75, 100]"
               :key="scale"
               @click="previewScale = scale"
-              class="px-2 py-0.5 text-[10px] font-mono rounded transition-colors"
+              class="px-2 py-0.5 text-[10px]   rounded transition-colors"
               :class="previewScale === scale ? 'bg-surface-800 text-surface-300' : 'text-surface-700 hover:text-surface-500'">
               {{ scale }}%
             </button>
@@ -198,7 +198,7 @@ const hasPlayground = computed(() =>
             />
             <div v-else class="rounded-xl border border-surface-700/40 border-dashed flex flex-col items-center justify-center py-20 gap-3 bg-surface-900/40">
               <span class="text-4xl opacity-20">◎</span>
-              <p class="text-sm text-surface-600 font-mono">Select a variant to preview</p>
+              <p class="text-sm text-surface-600  ">Select a variant to preview</p>
             </div>
           </div>
         </div>
@@ -225,13 +225,13 @@ const hasPlayground = computed(() =>
                   <span class="w-2 h-2 rounded-full bg-emerald-500/50" />
                 </div>
               </div>
-              <pre class="p-3 text-[11px] font-mono leading-relaxed text-surface-400 bg-surface-950/80 overflow-x-auto whitespace-pre">{{ JSON.stringify(liveValues, null, 2) }}</pre>
+              <pre class="p-3 text-[11px]   leading-relaxed text-surface-400 bg-surface-950/80 overflow-x-auto whitespace-pre">{{ JSON.stringify(liveValues, null, 2) }}</pre>
             </div>
 
             <!-- Diff indicator when custom -->
             <div v-if="!activeVariantId && doc.variants?.length"
               class="mt-3 rounded-lg bg-amber-500/5 border border-amber-500/15 px-3 py-2.5">
-              <p class="text-[10px] text-amber-500 font-mono font-medium mb-1">✦ Custom configuration</p>
+              <p class="text-[10px] text-amber-500   font-medium mb-1">✦ Custom configuration</p>
               <p class="text-[10px] text-amber-600/70">This combination doesn't match any predefined variant.</p>
             </div>
           </div>
@@ -244,7 +244,7 @@ const hasPlayground = computed(() =>
   <div v-else class="flex flex-col items-center py-16 gap-3 text-center">
     <span class="text-4xl opacity-20">⚙️</span>
     <p class="text-sm text-surface-500">No playground configured for this doc.</p>
-    <p class="text-xs text-surface-700">Add <code class="font-mono">controls</code> and <code class="font-mono">variants</code> fields to enable it.</p>
+    <p class="text-xs text-surface-700">Add <code class=" ">controls</code> and <code class=" ">variants</code> fields to enable it.</p>
   </div>
 </template>
 
