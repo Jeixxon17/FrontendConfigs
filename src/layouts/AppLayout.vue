@@ -62,7 +62,7 @@ function toggleSidebar() {
     <!-- Main -->
     <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
       <!-- Top bar -->
-      <header class="shrink-0 flex items-center justify-between px-4 sm:px-6 border-b border-surface-800/60 bg-surface-950/80 backdrop-blur-md z-10"
+      <header class="shrink-0 md:hidden flex items-center justify-between px-4 sm:px-6 border-b border-surface-800/60 bg-surface-950/80 backdrop-blur-md z-10"
         style="height: var(--header-height)">
         <div class="flex items-center gap-3">
           <!-- Hamburger / collapse toggle -->
@@ -77,31 +77,7 @@ function toggleSidebar() {
 
           <!-- Mobile logo -->
           <div class="flex items-center gap-2 md:hidden">
-            <div class="w-6 h-6 rounded-md bg-gradient-to-br from-accent-500 to-violet-600 flex items-center justify-center">
-              <span class="text-white font-bold text-[10px]">CF</span>
-            </div>
-            <span class="text-sm font-bold text-surface-100 font-display">ConfigDocs</span>
-          </div>
-        </div>
-
-        <!-- Right actions -->
-        <div class="flex items-center gap-2">
-          <!-- Search trigger -->
-          <button
-            @click="searchOpen = true"
-            class="flex items-center gap-2 px-3 py-1.5 bg-surface-800/60 hover:bg-surface-800 border border-surface-700/40 rounded-lg text-xs text-surface-500 hover:text-surface-300 transition-all"
-          >
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-            <span class="hidden sm:inline">Search</span>
-            <kbd class="hidden sm:inline px-1 bg-surface-700/60 rounded border border-surface-600/40 text-[9px]  ">⌘K</kbd>
-          </button>
-
-          <!-- Config count -->
-          <div class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-surface-800/40 rounded-lg border border-surface-700/30">
-            <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse-slow" />
-            <span class="text-xs text-surface-500  ">{{ store.docs.length }} configs</span>
+            <span class="text-sm font-bold text-surface-100 font-display">{ Frontend Configs }</span>
           </div>
         </div>
       </header>
@@ -115,10 +91,6 @@ function toggleSidebar() {
         </RouterView>
       </main>
     </div>
-
-    <!-- Search modal -->
-    <SearchInput v-model="searchOpen" />
-
     <!-- Notifications -->
     <NotificationToast />
   </div>

@@ -22,8 +22,8 @@ const activeVariant = computed<ConfigVariant | null>(() =>
   props.doc.variants?.find(v => v.id === activeVariantId.value) ?? null
 )
 
-const previewComponent = computed(() =>
-  activeVariant.value?.previewComponent ?? ''
+const previewImage = computed(() =>
+  activeVariant.value?.previewImage ?? ''
 )
 
 // When user selects a variant → sync liveValues to that variant's values
@@ -133,7 +133,7 @@ const hasPlayground = computed(() =>
               ? 'border-accent-500 text-accent-400'
               : 'border-transparent text-surface-600 hover:text-surface-400'"
           >
-            {{ tab }}
+            {{ tab === 'variants' ? 'Versiones' : 'Controles' }}
             <span class="ml-1 text-[10px]   opacity-60">
               {{ tab === 'variants' ? doc.variants?.length ?? 0 : doc.controls?.length ?? 0 }}
             </span>
@@ -173,32 +173,19 @@ const hasPlayground = computed(() =>
             <span class="text-[10px] text-surface-600   uppercase tracking-widest">Preview</span>
             <span v-if="activeVariant" class="text-[10px] text-surface-700  ">· {{ activeVariant.label }}</span>
           </div>
-          <!-- Viewport toggle -->
-          <div class="flex items-center gap-1">
-            <button
-              v-for="scale in [75, 100]"
-              :key="scale"
-              @click="previewScale = scale"
-              class="px-2 py-0.5 text-[10px]   rounded transition-colors"
-              :class="previewScale === scale ? 'bg-surface-800 text-surface-300' : 'text-surface-700 hover:text-surface-500'">
-              {{ scale }}%
-            </button>
-          </div>
         </div>
 
         <!-- Dotted canvas -->
-        <div class="flex-1 flex items-center justify-center p-6 overflow-auto relative"
-          style="background-image: radial-gradient(circle, #303a55 1px, transparent 1px); background-size: 24px 24px;">
+        <div class="flex-1 flex items-center justify-center p-6 overflow-auto relative">
           <div class="transition-all duration-300 w-full max-w-xl"
             :style="`transform: scale(${previewScale / 100}); transform-origin: top center`">
-            <PreviewRenderer
-              v-if="previewComponent"
-              :component="previewComponent"
+            <img
+              v-if="previewImage"
+              :src="previewImage"
               :values="liveValues"
             />
             <div v-else class="rounded-xl border border-surface-700/40 border-dashed flex flex-col items-center justify-center py-20 gap-3 bg-surface-900/40">
-              <span class="text-4xl opacity-20">◎</span>
-              <p class="text-sm text-surface-600  ">Select a variant to preview</p>
+              <p class="text-sm text-surface-600  ">Sin previsualizacion disponible</p>
             </div>
           </div>
         </div>

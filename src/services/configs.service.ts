@@ -67,7 +67,32 @@ export const configsService = {
     }
   },
 
+  async createCategory(category: {
+    name: string;
+    slug: string;
+  }) {
+      await addDoc(
+        collection(db, "categories"),
+        {
+          ...category,
+          createdAt: new Date(),
+        }
+      );
+  },
+
+  async getCategories(): Promise<string[]> {
+    const snapshot = await getDocs(
+      collection(db, "categories")
+    );
+
+    return snapshot.docs.map(
+      (doc) => doc.data().name
+    );
+  },
+
   async create(data: Omit<ConfigDoc, 'id' | 'createdAt' | 'updatedAt'>): Promise<string> {
+    console.log("Creating document:", data);
+
     const ref = await addDoc(collection(db, COLLECTION), {
       ...data,
       createdAt: serverTimestamp(),
@@ -98,7 +123,7 @@ export const configsService = {
         collection(db, COLLECTION),
         (snap) => {
           const docs = snap.docs.map(d => docToConfig(d.id, d.data()))
-          callback(docs.length > 0 ? docs : getMockData())
+          callback(docs)
         },
         (_error) => { callback(getMockData()) }
       )

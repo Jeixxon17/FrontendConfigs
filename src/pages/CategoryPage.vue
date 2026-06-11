@@ -35,7 +35,6 @@ function navigate(slug: string, id: string) {
       >
         <div class="flex items-start justify-between gap-2">
           <h3 class="text-base font-semibold text-surface-200 group-hover:text-white transition-colors">{{ doc.title }}</h3>
-          <TagBadge v-if="doc.status" :variant="doc.status as any">{{ doc.status }}</TagBadge>
         </div>
         <p class="text-sm text-surface-500 line-clamp-2">{{ doc.description }}</p>
         <div class="flex flex-wrap gap-1">

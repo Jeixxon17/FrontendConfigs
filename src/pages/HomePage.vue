@@ -75,10 +75,10 @@ function onSaved(id: string) {
         <table v-if="filteredDocs.length" class="w-full">
           <thead class="sticky top-0 bg-surface-950/95 backdrop-blur z-10">
             <tr class="border-b border-surface-800/60">
-              <th class="text-left text-[10px] text-surface-600   uppercase tracking-widest px-6 py-3">Config</th>
-              <th class="text-left text-[10px] text-surface-600   uppercase tracking-widest px-4 py-3 hidden sm:table-cell">Category</th>
-              <th class="text-left text-[10px] text-surface-600   uppercase tracking-widest px-4 py-3 hidden lg:table-cell">Variants</th>
-              <th class="text-right text-[10px] text-surface-600   uppercase tracking-widest px-6 py-3">Actions</th>
+              <th class="text-left text-[10px] text-surface-600   uppercase tracking-widest px-6 py-3">configuraciones</th>
+              <th class="text-left text-[10px] text-surface-600   uppercase tracking-widest px-4 py-3 hidden sm:table-cell">Categoria</th>
+              <th class="text-left text-[10px] text-surface-600   uppercase tracking-widest px-4 py-3 hidden lg:table-cell">Variantes</th>
+              <th class="text-right text-[10px] text-surface-600   uppercase tracking-widest px-6 py-3">Acciones</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-surface-800/30">
@@ -102,15 +102,15 @@ function onSaved(id: string) {
                 <div class="flex items-center justify-end gap-1.5">
                   <RouterLink :to="{ name: 'config', params: { slug: doc.slug } }"
                     class="btn-ghost text-xs px-2.5 py-1.5">
-                    View
+                    Visualizar
                   </RouterLink>
                   <button @click="startEdit(doc)" class="btn-ghost text-xs px-2.5 py-1.5">
-                    Edit
+                    Editar
                   </button>
                   <button @click="deleteDoc(doc.id)"
                     :disabled="deletingId === doc.id"
                     class="px-2.5 py-1.5 text-xs rounded-lg text-surface-600 hover:text-rose-400 hover:bg-rose-500/10 transition-all disabled:opacity-40">
-                    {{ deletingId === doc.id ? '…' : 'Delete' }}
+                    {{ deletingId === doc.id ? '…' : 'Eliminar' }}
                   </button>
                 </div>
               </td>

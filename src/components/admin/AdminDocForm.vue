@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import type {
   ConfigDoc,
   ConfigItem,
@@ -15,9 +15,12 @@ const props = defineProps<{ existing?: ConfigDoc }>();
 
 const store = useConfigsStore();
 const saving = ref(false);
+const savingCategory = ref(false);
 const activeSection = ref<
   "basic" | "configs" | "deps" | "controls" | "variants"
 >("basic");
+const showCategoryModal = ref(false);
+const newCategory = ref("");
 
 // ─── Form state ────────────────────────────────────────────────────────────
 const form = reactive<Omit<ConfigDoc, "id" | "createdAt" | "updatedAt">>({
@@ -166,6 +169,7 @@ async function save() {
     }
   } catch (e) {
     store.notify("error", "Failed to save. Check your Firebase config.");
+    console.log("Error saving configuration:", e);
   } finally {
     saving.value = false;
   }
@@ -176,7 +180,7 @@ const sections = [
   { id: "configs", label: "Configuracion Principal" },
   { id: "deps", label: "Dependencies" },
   { id: "controls", label: "Controls" },
-  { id: "variants", label: "Variants" },
+  { id: "variants", label: "Versiones" },
 ] as const;
 
 const controlTypes = [
@@ -189,17 +193,8 @@ const controlTypes = [
 ] as const;
 const depTypes = ["required", "optional", "compatible", "deprecated"] as const;
 
-const categoryOptions = [
-  "Modal",
-  "Footer",
-  "Header",
-  "Theme",
-  "Banner",
-  "Home",
-  "Typography",
-  "Loyalty",
-  "Other",
-];
+const categoryOptions = ref<string[]>([]);
+
 const previewComponents = [
   "LoyaltyClassic",
   "LoyaltyTiers",
@@ -217,6 +212,34 @@ const previewComponents = [
   "FooterLight",
   "FooterDark",
 ];
+
+onMounted(async() => {
+  await loadCategories();
+});
+
+async function loadCategories() {
+  try {
+    categoryOptions.value = await configsService.getCategories();
+  } catch (e) {
+    console.error("Error loading categories:", e);
+  }
+}
+
+async function saveCategory(category: string) {
+  if (!newCategory.value.trim()) return;
+  savingCategory.value = true;
+  try {
+    await configsService.createCategory({ name: newCategory.value, slug: newCategory.value.toLowerCase().replace(/\s+/g, "-") });
+    form.category = newCategory.value;
+    newCategory.value = "";
+    showCategoryModal.value = false;
+    store.notify("success", `Category "${category}" created!`);
+    await loadCategories();
+  } catch (e) {
+    store.notify("error", "Failed to create category.");
+    console.error("Error creating category:", e);
+  }
+}
 </script>
 
 <template>
@@ -304,7 +327,7 @@ const previewComponents = [
                     {{ c }}
                   </option>
                 </select>
-                <button class="btn-primary">
+                <button class="btn-primary" @click="showCategoryModal = true">
                   <svg
                     class="w-3 h-3"
                     version="1.1"
@@ -752,15 +775,12 @@ const previewComponents = [
                 <label class="text-[10px] text-surface-600"
                   >Preview Component</label
                 >
-                <select
-                  v-model="variant.previewComponent"
-                  class="input-base text-xs"
-                >
-                  <option value="">None</option>
-                  <option v-for="pc in previewComponents" :key="pc" :value="pc">
-                    {{ pc }}
-                  </option>
-                </select>
+                <input
+                  v-model="variant.previewImage"
+                  type="text"
+                  placeholder="https://frontend.com/imagen.png"
+                  class="input-base   text-xs"
+                />
               </div>
               <div class="space-y-1">
                 <label class="text-[10px] text-surface-600"
@@ -794,4 +814,47 @@ const previewComponents = [
       </div>
     </div>
   </div>
+
+  <Teleport to="body">
+  <div
+    v-if="showCategoryModal"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+  >
+    <div
+      class="w-full max-w-md rounded-xl border border-surface-700 bg-surface-900 p-6"
+    >
+      <h3 class="text-lg font-semibold text-white mb-4">
+        Crear Categoría
+      </h3>
+
+      <div class="space-y-4">
+        <input
+          v-model="newCategory"
+          type="text"
+          placeholder="Ej: Sportsbook"
+          class="input-base"
+        />
+
+        <div class="flex justify-end gap-2">
+          <button
+            class="btn-ghost"
+            @click="showCategoryModal = false"
+          >
+            Cancelar
+          </button>
+
+          <button
+            class="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+            @click="saveCategory"
+            :disabled="saving"
+          >
+            {{savingCategory ? 'Creando...' : 'Crear'}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</Teleport>
 </template>
+
+

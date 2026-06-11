@@ -15,7 +15,7 @@ const emit = defineEmits<{ select: [v: ConfigVariant] }>()
     <!-- Header -->
     <div class="px-4 py-3 border-b border-surface-800/60">
       <span class="text-[10px] text-surface-600   uppercase tracking-widest">
-        Variants
+        Versiones
         <span class="ml-1.5 bg-surface-800 text-surface-500 px-1.5 py-0.5 rounded-full">{{ variants.length }}</span>
       </span>
     </div>
