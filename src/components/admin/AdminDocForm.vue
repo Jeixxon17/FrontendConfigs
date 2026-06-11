@@ -225,7 +225,7 @@ async function loadCategories() {
   }
 }
 
-async function saveCategory(category: string) {
+async function saveCategory() {
   if (!newCategory.value.trim()) return;
   savingCategory.value = true;
   try {
@@ -233,7 +233,7 @@ async function saveCategory(category: string) {
     form.category = newCategory.value;
     newCategory.value = "";
     showCategoryModal.value = false;
-    store.notify("success", `Category "${category}" created!`);
+    store.notify("success", `Categoria "${newCategory.value}" creada!`);
     await loadCategories();
   } catch (e) {
     store.notify("error", "Failed to create category.");
@@ -846,7 +846,7 @@ async function saveCategory(category: string) {
           <button
             class="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
             @click="saveCategory"
-            :disabled="saving"
+            :disabled="savingCategory"
           >
             {{savingCategory ? 'Creando...' : 'Crear'}}
           </button>
