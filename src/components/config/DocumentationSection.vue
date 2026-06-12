@@ -25,14 +25,14 @@ const tabs = computed(() => {
   t.push({ id: "configs", label: "Configuraciones" });
   t.push({
     id: "dependencies",
-    label: "Dependencies",
+    label: "Informacion Adicional",
     count: props.doc.dependencies?.length,
   });
-  t.push({
+  /* t.push({
     id: "changelog",
     label: "Changelog",
     count: props.doc.changelog?.length,
-  });
+  }); */
   return t;
 });
 
@@ -71,7 +71,7 @@ const crumbs = computed(() => [
           <TagBadge v-for="tag in doc.tags" :key="tag">#{{ tag }}</TagBadge>
         </div>
                   <div
-            class="flex items-center gap-4 text-xs text-surface-600 ml-auto flex-wrap"
+            class="flex items-center gap-4 text-xs text-surface-300 ml-auto flex-wrap"
           >
             <span v-if="doc.author">by {{ doc.author }}</span>
             <span v-if="doc.updatedAt">
@@ -83,10 +83,6 @@ const crumbs = computed(() => [
                 })
               }}
             </span>
-            <span class=" "
-              >{{ doc.configs.length }} blocks ·
-              {{ doc.dependencies?.length ?? 0 }} deps</span
-            >
           </div>
       </div>
     </div>

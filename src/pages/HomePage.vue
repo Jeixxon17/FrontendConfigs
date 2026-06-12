@@ -75,10 +75,10 @@ function onSaved(id: string) {
         <table v-if="filteredDocs.length" class="w-full">
           <thead class="sticky top-0 bg-surface-950/95 backdrop-blur z-10">
             <tr class="border-b border-surface-800/60">
-              <th class="text-left text-[10px] text-surface-600   uppercase tracking-widest px-6 py-3">configuraciones</th>
-              <th class="text-left text-[10px] text-surface-600   uppercase tracking-widest px-4 py-3 hidden sm:table-cell">Categoria</th>
-              <th class="text-left text-[10px] text-surface-600   uppercase tracking-widest px-4 py-3 hidden lg:table-cell">Variantes</th>
-              <th class="text-right text-[10px] text-surface-600   uppercase tracking-widest px-6 py-3">Acciones</th>
+              <th class="text-left text-[10px] text-white  uppercase tracking-widest px-6 py-3">configuraciones</th>
+              <th class="text-left text-[10px] text-white  uppercase tracking-widest px-4 py-3 hidden sm:table-cell">Categoria</th>
+              <th class="text-left text-[10px] text-white  uppercase tracking-widest px-4 py-3 hidden lg:table-cell">Variantes</th>
+              <th class="text-right text-[10px] text-white  uppercase tracking-widest px-6 py-3">Acciones</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-surface-800/30">
@@ -95,7 +95,7 @@ function onSaved(id: string) {
               </td>
               <td class="px-4 py-3.5 hidden lg:table-cell">
                 <span class="text-xs text-surface-600  ">
-                  {{ doc.variants?.length ?? 0 }} variants · {{ doc.controls?.length ?? 0 }} controls
+                  {{ doc.variants?.length ?? 0 }} Versiones
                 </span>
               </td>
               <td class="px-6 py-3.5">

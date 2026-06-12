@@ -13,7 +13,7 @@ const { copyJSON, isCopied } = useClipboard()
 // ─── State ────────────────────────────────────────────────────────────────
 const activeVariantId = ref<string | null>(props.doc.variants?.[0]?.id ?? null)
 const liveValues = ref<Record<string, unknown>>({ ...(props.doc.playgroundDefault ?? {}) })
-const leftTab = ref<'variants' | 'controls'>('variants')
+const leftTab = ref<'variants'>('variants')
 const previewScale = ref(100)
 const showCode = ref(true)
 
@@ -125,7 +125,7 @@ const hasPlayground = computed(() =>
         <!-- Tab switcher -->
         <div class="flex border-b border-surface-800/60">
           <button
-            v-for="tab in ['variants', 'controls'] as const"
+            v-for="tab in ['variants'] as const"
             :key="tab"
             @click="leftTab = tab"
             class="flex-1 py-2.5 text-xs font-medium capitalize transition-all border-b-2 -mb-px"
@@ -133,9 +133,9 @@ const hasPlayground = computed(() =>
               ? 'border-accent-500 text-accent-400'
               : 'border-transparent text-surface-600 hover:text-surface-400'"
           >
-            {{ tab === 'variants' ? 'Versiones' : 'Controles' }}
+            {{ tab === 'variants' ? 'Versiones' : '' }}
             <span class="ml-1 text-[10px]   opacity-60">
-              {{ tab === 'variants' ? doc.variants?.length ?? 0 : doc.controls?.length ?? 0 }}
+              {{ tab === 'variants' ? doc.variants?.length ?? 0 : undefined }}
             </span>
           </button>
         </div>
@@ -150,17 +150,7 @@ const hasPlayground = computed(() =>
           />
           <div v-else-if="leftTab === 'variants'" class="flex flex-col items-center py-12 gap-2 px-4">
             <span class="text-2xl opacity-20">◎</span>
-            <p class="text-xs text-surface-600 text-center">No variants defined for this config.</p>
-          </div>
-
-          <PlaygroundControls
-            v-if="leftTab === 'controls' && doc.controls?.length"
-            :controls="doc.controls"
-            v-model="liveValues"
-          />
-          <div v-else-if="leftTab === 'controls'" class="flex flex-col items-center py-12 gap-2 px-4">
-            <span class="text-2xl opacity-20">⚙</span>
-            <p class="text-xs text-surface-600 text-center">No controls defined.</p>
+            <p class="text-xs text-surface-600 text-center">No hay versiones definidas para esta configuracion</p>
           </div>
         </div>
       </div>

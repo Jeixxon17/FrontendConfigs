@@ -12,14 +12,6 @@ const emit = defineEmits<{ select: [v: ConfigVariant] }>()
 
 <template>
   <div class="space-y-1">
-    <!-- Header -->
-    <div class="px-4 py-3 border-b border-surface-800/60">
-      <span class="text-[10px] text-surface-600   uppercase tracking-widest">
-        Versiones
-        <span class="ml-1.5 bg-surface-800 text-surface-500 px-1.5 py-0.5 rounded-full">{{ variants.length }}</span>
-      </span>
-    </div>
-
     <!-- Variant cards -->
     <div class="px-3 py-2 space-y-2">
       <button

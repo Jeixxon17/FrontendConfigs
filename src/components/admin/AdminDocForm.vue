@@ -178,40 +178,13 @@ async function save() {
 const sections = [
   { id: "basic", label: "Informacion basica" },
   { id: "configs", label: "Configuracion Principal" },
-  { id: "deps", label: "Dependencies" },
-  { id: "controls", label: "Controls" },
   { id: "variants", label: "Versiones" },
+  { id: "deps", label: "Informacion Adicional" },
 ] as const;
 
-const controlTypes = [
-  "toggle",
-  "select",
-  "number",
-  "range",
-  "text",
-  "color",
-] as const;
-const depTypes = ["required", "optional", "compatible", "deprecated"] as const;
+const depTypes = ["Requerido", "Opcional", "Compatible"] as const;
 
 const categoryOptions = ref<string[]>([]);
-
-const previewComponents = [
-  "LoyaltyClassic",
-  "LoyaltyTiers",
-  "LoyaltyScratch",
-  "ModalLoginV1",
-  "ModalLoginV2",
-  "ModalLoginV3",
-  "ModalRegisterV1",
-  "ModalRegisterV2",
-  "BannerPreview",
-  "ThemePreview",
-  "HeaderV1",
-  "HeaderV2",
-  "HeaderV3",
-  "FooterLight",
-  "FooterDark",
-];
 
 onMounted(async() => {
   await loadCategories();
@@ -228,13 +201,20 @@ async function loadCategories() {
 async function saveCategory() {
   if (!newCategory.value.trim()) return;
   savingCategory.value = true;
+
+  if (categoryOptions.value.includes(newCategory.value.trim())) {
+    store.notify("error", "Esta categoria ya existe.");
+    savingCategory.value = false;
+    return;
+  }
+
   try {
     await configsService.createCategory({ name: newCategory.value, slug: newCategory.value.toLowerCase().replace(/\s+/g, "-") });
     form.category = newCategory.value;
-    newCategory.value = "";
     showCategoryModal.value = false;
     store.notify("success", `Categoria "${newCategory.value}" creada!`);
     await loadCategories();
+    newCategory.value = "";
   } catch (e) {
     store.notify("error", "Failed to create category.");
     console.error("Error creating category:", e);
@@ -251,7 +231,7 @@ async function saveCategory() {
       <div>
         <h2 class="text-lg font-bold text-white font-display">
           {{
-            existing ? `Edit: ${existing.title}` : "Crear nueva configuración"
+            existing ? `Editar: ${existing.title}` : "Crear nueva configuración"
           }}
         </h2>
       </div>
@@ -470,21 +450,21 @@ async function saveCategory() {
               <input
                 v-model="cfg.title"
                 type="text"
-                placeholder="Block title"
+                placeholder="Titulo breve para esta configuracion ( Ej: Configuracion para activar el modo oscuro )"
                 class="bg-transparent text-sm font-medium text-surface-200 outline-none flex-1 placeholder-surface-600"
               />
               <button
                 @click="removeConfig(i)"
                 class="text-surface-600 hover:text-rose-400 text-xs ml-3 transition-colors"
               >
-                Remove
+                Eliminar
               </button>
             </div>
             <div class="p-4 space-y-3">
               <input
                 v-model="cfg.description"
                 type="text"
-                placeholder="Optional description"
+                placeholder="Descripcion opcional"
                 class="input-base text-xs"
               />
               <div>
@@ -524,10 +504,10 @@ async function saveCategory() {
         <div v-else-if="activeSection === 'deps'" class="space-y-4 max-w-2xl">
           <div class="flex items-center justify-between">
             <p class="text-sm text-surface-400">
-              Other configs this one depends on.
+              Añade informacion adicional sobre la configuracion para dar contexto.
             </p>
             <button @click="addDep" class="btn-primary text-xs">
-              + Add Dependency
+              + Añadir informacion
             </button>
           </div>
 
@@ -550,21 +530,21 @@ async function saveCategory() {
               <input
                 v-model="dep.label"
                 type="text"
-                placeholder="Label"
+                placeholder="Indicacion breve de esta informacion adicional ( Ej: Requiere autenticacion )"
                 class="flex-1 bg-transparent text-sm text-surface-200 outline-none placeholder-surface-600 min-w-0"
               />
               <button
                 @click="removeDep(i)"
                 class="text-surface-600 hover:text-rose-400 text-xs transition-colors"
               >
-                Remove
+                Eliminar
               </button>
             </div>
             <div class="p-4 space-y-3">
               <input
                 v-model="dep.description"
                 type="text"
-                placeholder="Describe what happens if missing"
+                placeholder="Describe esta informacion adicional, que implica, porque es importante, etc."
                 class="input-base text-xs"
               />
               <textarea
@@ -585,147 +565,7 @@ async function saveCategory() {
             @click="addDep"
             class="w-full py-10 border border-dashed border-surface-700/40 rounded-xl text-surface-600 hover:text-surface-400 transition-all text-sm"
           >
-            + Add first dependency
-          </button>
-        </div>
-
-        <!-- ══ CONTROLS ════════════════════════════════════════════════════ -->
-        <div
-          v-else-if="activeSection === 'controls'"
-          class="space-y-4 max-w-2xl"
-        >
-          <div class="flex items-center justify-between">
-            <p class="text-sm text-surface-400">
-              Interactive knobs for the Playground panel.
-            </p>
-            <button @click="addControl" class="btn-primary text-xs">
-              + Add Control
-            </button>
-          </div>
-
-          <div
-            v-for="(ctrl, i) in form.controls"
-            :key="i"
-            class="glass-card p-4 space-y-3"
-          >
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-medium text-surface-400"
-                >Control {{ i + 1 }}</span
-              >
-              <button
-                @click="removeControl(i)"
-                class="text-xs text-surface-600 hover:text-rose-400 transition-colors"
-              >
-                Remove
-              </button>
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-              <div class="space-y-1">
-                <label class="text-[10px] text-surface-600">JSON Key</label>
-                <input
-                  v-model="ctrl.key"
-                  type="text"
-                  placeholder="my_config_key"
-                  class="input-base   text-xs"
-                />
-              </div>
-              <div class="space-y-1">
-                <label class="text-[10px] text-surface-600">Label</label>
-                <input
-                  v-model="ctrl.label"
-                  type="text"
-                  placeholder="My Config Key"
-                  class="input-base text-xs"
-                />
-              </div>
-              <div class="space-y-1">
-                <label class="text-[10px] text-surface-600">Type</label>
-                <select v-model="ctrl.type" class="input-base text-xs">
-                  <option v-for="t in controlTypes" :key="t" :value="t">
-                    {{ t }}
-                  </option>
-                </select>
-              </div>
-              <div class="space-y-1">
-                <label class="text-[10px] text-surface-600"
-                  >Default Value</label
-                >
-                <input
-                  v-model="ctrl.defaultValue"
-                  type="text"
-                  placeholder="true / 1 / 'gold'"
-                  class="input-base   text-xs"
-                />
-              </div>
-            </div>
-            <!-- Select options builder -->
-            <div v-if="ctrl.type === 'select'" class="space-y-1.5">
-              <label class="text-[10px] text-surface-600"
-                >Options (one per line: label=value)</label
-              >
-              <textarea
-                :value="
-                  (ctrl.options || [])
-                    .map((o) => `${o.label}=${o.value}`)
-                    .join('\n')
-                "
-                @input="
-                  ctrl.options = ($event.target as HTMLTextAreaElement).value
-                    .split('\n')
-                    .filter(Boolean)
-                    .map((line) => {
-                      const [label, ...rest] = line.split('=');
-                      const val = rest.join('=');
-                      const num = Number(val);
-                      return {
-                        label: label.trim(),
-                        value: isNaN(num) ? val.trim() : num,
-                      };
-                    })
-                "
-                rows="3"
-                placeholder="Version 1=1&#10;Version 2=2"
-                class="input-base   text-xs resize-none"
-              />
-            </div>
-            <!-- Range min/max -->
-            <div
-              v-if="ctrl.type === 'range' || ctrl.type === 'number'"
-              class="grid grid-cols-3 gap-2"
-            >
-              <div class="space-y-1">
-                <label class="text-[10px] text-surface-600">Min</label>
-                <input
-                  v-model.number="ctrl.min"
-                  type="number"
-                  class="input-base text-xs  "
-                />
-              </div>
-              <div class="space-y-1">
-                <label class="text-[10px] text-surface-600">Max</label>
-                <input
-                  v-model.number="ctrl.max"
-                  type="number"
-                  class="input-base text-xs  "
-                />
-              </div>
-              <div class="space-y-1">
-                <label class="text-[10px] text-surface-600">Step</label>
-                <input
-                  v-model.number="ctrl.step"
-                  type="number"
-                  class="input-base text-xs  "
-                />
-              </div>
-            </div>
-          </div>
-
-          <button
-            v-if="!form.controls?.length"
-            @click="addControl"
-            class="w-full py-10 border border-dashed border-surface-700/40 rounded-xl text-surface-600 hover:text-surface-400 transition-all text-sm"
-          >
-            + Add first control
+            + Añadir informacion adicional
           </button>
         </div>
 
