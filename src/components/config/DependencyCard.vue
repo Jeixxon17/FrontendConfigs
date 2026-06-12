@@ -55,7 +55,6 @@ const depIcon = (type: Dependency['type']) => {
   </div>
 
   <div v-else class="flex items-center gap-3 px-4 py-3 rounded-xl bg-surface-800/30 border border-surface-700/30 text-sm text-surface-500">
-    <span>✦</span>
-    <span>No dependencies for this configuration.</span>
+    <span>No hay informacion adicional disponible.</span>
   </div>
 </template>
